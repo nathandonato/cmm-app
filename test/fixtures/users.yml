@@ -1,0 +1,4 @@
+one:
+  username: User
+  email: user@foo.bar
+  password_digest: foobar
