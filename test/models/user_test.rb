@@ -19,4 +19,10 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not_nil user.password_digest
   end
+
+  test 'dependencies are destroyed with user' do
+    assert_difference 'TodoItem.count', -2 do
+      @user.destroy
+    end
+  end
 end
