@@ -33,8 +33,7 @@ module API
 
       # DELETE /todo_items/1
       def destroy
-        @todo_item&.destroy
-        head :no_content
+        render not_found_payload || destroy_payload
       end
 
       private
@@ -66,7 +65,12 @@ module API
         show_payload
       end
 
-      private
+      # Note this has no pathway for a failed #destroy because that will cause
+      # a 500 error
+      def destroy_payload
+        @todo_item.destroy
+        { nothing: true, status: :no_content }
+      end
 
       def set_todo_item
         @todo_item = current_user.todo_items.find_by_id(params[:id])

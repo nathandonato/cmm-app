@@ -63,13 +63,13 @@ module API
       end
 
       test 'update returns not_found' do
-        patch api_v1_todo_item_url(0), params: { }, headers: @headers, as: :json
+        patch api_v1_todo_item_url(0), params: {}, headers: @headers, as: :json
         assert_response :not_found
       end
 
-      test 'delete returns no_content even if not found' do
+      test 'delete returns not_found' do
         delete api_v1_todo_item_url(0), headers: @headers, as: :json
-        assert_response :no_content
+        assert_response :not_found
       end
 
       test 'create returns errors' do
@@ -115,7 +115,7 @@ module API
                                                    as: :json
         end
 
-        assert_response :no_content
+        assert_response :not_found
       end
     end
   end
