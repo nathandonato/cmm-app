@@ -2,3 +2,8 @@ one:
   username: User
   email: user@foo.bar
   password_digest: foobar
+
+two:
+  username: User2
+  email: user2@foo.bar
+  password_digest: foobar
