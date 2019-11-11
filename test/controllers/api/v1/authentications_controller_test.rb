@@ -4,7 +4,7 @@ require 'test_helper'
 
 module API
   module V1
-    class AuthenticationControllerTest < ActionDispatch::IntegrationTest
+    class AuthenticationsControllerTest < ActionDispatch::IntegrationTest
       setup do
         @user = User.create(username: 'foo', email: 'bar', password: 'baz')
         @user_params = { email: @user.email, password: @user.password }
@@ -15,7 +15,7 @@ module API
       end
 
       test 'can log in' do
-        post api_v1_login_path, params: { user: @user_params }
+        post api_v1_authentication_path, params: { user: @user_params }
         body = JSON.parse(response.body)
         jwt = JwtManager.decode(response.cookies['cmm_jwt'])
 
@@ -26,7 +26,7 @@ module API
 
       test 'returns unauthorized if incorrect password' do
         params = { user: @user_params.merge(password: 'wrong') }
-        post api_v1_login_path, params: params
+        post api_v1_authentication_path, params: params
         error = JSON.parse(response.body)['error']
 
         assert_response :unauthorized
@@ -35,7 +35,7 @@ module API
 
       test 'returns unauthorized if unrecognized email' do
         User.destroy_all
-        post api_v1_login_path, params: { user: @user_params }
+        post api_v1_authentication_path, params: { user: @user_params }
         error = JSON.parse(response.body)['error']
 
         assert_response :unauthorized
@@ -44,7 +44,7 @@ module API
 
       # TODO: Figure out a way to actually test that the cookie gets deleted.
       test 'can log out' do
-        delete api_v1_logout_path
+        delete api_v1_authentication_path
 
         assert_response :success
       end
