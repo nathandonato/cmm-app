@@ -38,6 +38,14 @@ module API
 
       private
 
+      def set_todo_item
+        @todo_item = current_user.todo_items.find_by_id(params[:id])
+      end
+
+      def todo_item_params
+        params.require(:todo_item).permit(:description, :completed_at)
+      end
+
       def not_found_payload
         return unless @todo_item.nil?
 
@@ -70,14 +78,6 @@ module API
       def destroy_payload
         @todo_item.destroy
         { nothing: true, status: :no_content }
-      end
-
-      def set_todo_item
-        @todo_item = current_user.todo_items.find_by_id(params[:id])
-      end
-
-      def todo_item_params
-        params.require(:todo_item).permit(:description, :completed_at)
       end
     end
   end
