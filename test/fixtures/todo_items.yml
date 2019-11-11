@@ -1,0 +1,8 @@
+completed:
+  description: Take out the trash
+  completed_at: 2019-11-11 00:00:00
+  user: one
+
+not_completed:
+  description: Write a CRUD app for CMM interview
+  user: one
