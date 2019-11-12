@@ -14,7 +14,7 @@ module API
 
       # GET /todo_items
       def index
-        render json: current_user.todo_items,
+        render json: current_user.todo_items.order(created_at: :asc),
                each_serializer: TodoItemSerializer
       end
 
