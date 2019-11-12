@@ -7,6 +7,15 @@
   display: flex;
 }
 
+.mark-complete {
+  left: 10px;
+}
+
+.remove-todo {
+  right: 10px;
+}
+
 .completed {
-  float: right;
+  text-decoration: line-through;
+  color: grey;
 }

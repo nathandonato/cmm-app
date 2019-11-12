@@ -1,17 +1,19 @@
 import React from 'react';
 import './TodoRow.css';
+import TodoDescription from './TodoDescription.js';
+import MarkTodoComplete from './MarkTodoComplete.js';
+import RemoveTodo from './RemoveTodo.js';
+
 
 class TodoRow extends React.Component {
   render() {
-    const { description, completed_at } = this.props.todo
+    const { todo } = this.props
+
     return (
       <div className='todo-row'>
-        <div className='description'>
-          {description}
-        </div>
-        <div className='completed'>
-          {completed_at != null ? '√' : 'X' }
-        </div>
+        <MarkTodoComplete todo={todo} updateTodo={this.props.updateTodo}/>
+        <TodoDescription todo={todo}/>
+        <RemoveTodo todo={todo} removeTodo={this.props.removeTodo}/>
       </div>
     )
   }
