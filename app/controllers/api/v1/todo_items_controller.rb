@@ -7,8 +7,10 @@ module API
     # This is the v1 controller for TodoItems
     class TodoItemsController < APIController
       include Concerns::AuthenticateRequest
+      include Concerns::CommonRenders
 
-      before_action :set_todo_item, only: %i[show update destroy]
+      before_action :find_todo_item, only: %i[show update destroy]
+      rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
       # GET /todo_items
       def index
@@ -18,66 +20,47 @@ module API
 
       # GET /todo_items/1
       def show
-        render not_found_payload || show_payload
+        render json: @todo_item, serializer: TodoItemSerializer, status: :ok
       end
 
       # POST /todo_items
       def create
-        render create_payload || errors_payload
+        render_created || render_record_errors(@todo_item)
       end
 
       # PATCH/PUT /todo_items/1
       def update
-        render not_found_payload || update_payload || errors_payload
+        render_updated || render_record_errors(@todo_item)
       end
 
       # DELETE /todo_items/1
       def destroy
-        render not_found_payload || destroy_payload
+        @todo_item.destroy
+        head :no_content
       end
 
       private
 
-      def set_todo_item
-        @todo_item = current_user.todo_items.find_by_id(params[:id])
+      def find_todo_item
+        @todo_item = current_user.todo_items.find(params[:id])
       end
 
       def todo_item_params
         params.require(:todo_item).permit(:description, :completed_at)
       end
 
-      def not_found_payload
-        return unless @todo_item.nil?
-
-        { json: { error: 'Todo item not found' }, status: :not_found }
-      end
-
-      def errors_payload
-        { json: @todo_item.errors, status: :unprocessable_entity }
-      end
-
-      def show_payload
-        { json: @todo_item, serializer: TodoItemSerializer, status: :ok }
-      end
-
-      def create_payload
+      def render_created
         @todo_item = current_user.todo_items.new(todo_item_params)
         return unless @todo_item.save
 
-        { json: @todo_item, serializer: TodoItemSerializer, status: :created }
+        render json: @todo_item, serializer: TodoItemSerializer,
+               status: :created
       end
 
-      def update_payload
+      def render_updated
         return unless @todo_item.update(todo_item_params)
 
-        show_payload
-      end
-
-      # Note this has no pathway for a failed #destroy because that will cause
-      # a 500 error
-      def destroy_payload
-        @todo_item.destroy
-        { nothing: true, status: :no_content }
+        render json: @todo_item, serializer: TodoItemSerializer, status: :ok
       end
     end
   end
