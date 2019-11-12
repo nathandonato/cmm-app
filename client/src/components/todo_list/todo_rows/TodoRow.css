@@ -1,0 +1,12 @@
+.todo-row {
+  border: 1px solid grey;
+  border-radius: 5px;
+  text-align: left;
+  padding: 5px;
+  margin: 3px;
+  display: flex;
+}
+
+.completed {
+  float: right;
+}
