@@ -5,11 +5,12 @@ class RemoveTodo extends React.Component {
     const { id } = this.props.todo
 
     return (
-      <div className='remove-todo'>
-        <button onClick={(e) => this.props.removeTodo(id)}>
+        <button
+          className='col-md-1 btn btn-danger btn-remove-todo btn-sm'
+          onClick={(e) => this.props.removeTodo(id)}
+        >
           x
         </button>
-      </div>
     )
   }
 }

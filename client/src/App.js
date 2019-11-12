@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/todo_list/TodoList.js';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   function login() {
@@ -22,7 +23,7 @@ function App() {
   }
 
   login();
-  
+
   return (
     <TodoList />
   );

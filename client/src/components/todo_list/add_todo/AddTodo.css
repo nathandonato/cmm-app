@@ -1,15 +1,13 @@
+.todo-form {
+  display: inline !important;
+}
+
 .add-todo {
-  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.add-todo input {
-  width: 90%;
-  padding: 5px;
-  margin: 5px;
-  box-sizing: border-box;
-}
-
-.add-todo button {
-  text-align: center;
-  vertical-align: middle;
+.btn-add-todo {
+  background-color: white !important;
+  border-color: lightgray !important;
 }

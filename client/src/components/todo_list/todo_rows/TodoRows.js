@@ -16,9 +16,9 @@ class TodoRows extends React.Component {
     })
 
     return (
-      <div>
+      <ul className="list-group">
         {rows}
-      </div>
+      </ul>
     )
   }
 }

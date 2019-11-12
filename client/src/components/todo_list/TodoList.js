@@ -69,14 +69,16 @@ class TodoList extends React.Component {
   render() {
     const { todoItems } = this.state
     return (
-      <div className="todo-list">
-        <ListHeader title='Todo list' />
-        <TodoRows
-          todos={todoItems}
-          updateTodo={this.updateTodo}
-          removeTodo={this.removeTodo}
-        />
-      <AddTodo addTodo={this.addTodo}/>
+      <div className='todo-list'>
+        <div className='container'>
+          <ListHeader title='Todo list' />
+          <TodoRows
+            todos={todoItems}
+            updateTodo={this.updateTodo}
+            removeTodo={this.removeTodo}
+          />
+          <AddTodo addTodo={this.addTodo}/>
+        </div>
       </div>
     )
   }

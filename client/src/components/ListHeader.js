@@ -5,8 +5,10 @@ class ListHeader extends React.Component {
   render() {
     const { title } = this.props
     return (
-      <div className="list-header">
-        <h3>{title}</h3>
+      <div className='row'>
+        <div className="col-md-12 list-header">
+          <h3>{title}</h3>
+        </div>
       </div>
     )
   }

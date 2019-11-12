@@ -1,6 +1,7 @@
 .todo-list {
-  border: 2px solid darkblue;
-  border-radius: 3px;
+  background-color: aliceblue;
+  border: 2px solid #b3c3d2;
+  border-radius: 8px;
   max-width: 500px;
   text-align: center;
   margin: 4%

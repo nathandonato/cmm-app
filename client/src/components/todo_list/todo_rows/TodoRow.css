@@ -1,21 +1,16 @@
-.todo-row {
-  border: 1px solid grey;
+.todo-li {
   border-radius: 5px;
   text-align: left;
   padding: 5px;
   margin: 3px;
-  display: flex;
-}
-
-.mark-complete {
-  left: 10px;
-}
-
-.remove-todo {
-  right: 10px;
 }
 
 .completed {
   text-decoration: line-through;
   color: grey;
+}
+
+.btn-remove-todo {
+  background-color: #e05959 !important;
+  border-color: #e05959 !important;
 }

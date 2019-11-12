@@ -13,10 +13,10 @@ class MarkTodoComplete extends React.Component {
   }
 
   render() {
-    const { id, completed_at } = this.props.todo
+    const { completed_at } = this.props.todo
 
     return (
-      <div className='mark-complete'>
+      <div className='col-md-1'>
         <input
           type='checkbox'
           checked={completed_at != null}

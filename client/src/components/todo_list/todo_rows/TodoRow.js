@@ -9,11 +9,13 @@ class TodoRow extends React.Component {
     const { todo } = this.props
 
     return (
-      <div className='todo-row'>
-        <MarkTodoComplete todo={todo} updateTodo={this.props.updateTodo}/>
-        <TodoDescription todo={todo}/>
-        <RemoveTodo todo={todo} removeTodo={this.props.removeTodo}/>
-      </div>
+      <li className='todo-li list-group-item'>
+        <div class='todo-row row'>
+          <MarkTodoComplete todo={todo} updateTodo={this.props.updateTodo}/>
+          <TodoDescription todo={todo}/>
+          <RemoveTodo todo={todo} removeTodo={this.props.removeTodo}/>
+        </div>
+      </li>
     )
   }
 }
