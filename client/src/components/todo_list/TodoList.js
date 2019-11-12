@@ -1,6 +1,7 @@
 import React from 'react';
 import ListHeader from '../ListHeader.js';
 import TodoRows from './todo_rows/TodoRows.js';
+import AddTodo from './add_todo/AddTodo.js';
 import './TodoList.css'
 import _ from 'lodash'
 
@@ -14,6 +15,7 @@ class TodoList extends React.Component {
     }
     this.updateTodo = this.updateTodo.bind(this)
     this.removeTodo = this.removeTodo.bind(this)
+    this.addTodo = this.addTodo.bind(this)
   }
 
   buildFetchOptions(opts) {
@@ -36,6 +38,13 @@ class TodoList extends React.Component {
 
   removeTodo(id) {
     fetch(`${this.state.apiUrl}/${id}`, this.buildFetchOptions({ method: 'DELETE' }))
+    .then(() => this.setState({ stale: true }));
+  }
+
+  addTodo(todoOptions) {
+    const body = { todo_item: todoOptions }
+    const fetchOptions = this.buildFetchOptions({ method: 'POST', body: JSON.stringify(body) })
+    fetch(`${this.state.apiUrl}`, fetchOptions)
     .then(() => this.setState({ stale: true }));
   }
 
@@ -67,6 +76,7 @@ class TodoList extends React.Component {
           updateTodo={this.updateTodo}
           removeTodo={this.removeTodo}
         />
+      <AddTodo addTodo={this.addTodo}/>
       </div>
     )
   }

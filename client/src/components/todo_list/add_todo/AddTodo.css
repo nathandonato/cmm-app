@@ -1,0 +1,15 @@
+.add-todo {
+  text-align: left;
+}
+
+.add-todo input {
+  width: 90%;
+  padding: 5px;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+.add-todo button {
+  text-align: center;
+  vertical-align: middle;
+}
