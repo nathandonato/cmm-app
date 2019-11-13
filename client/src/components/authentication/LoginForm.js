@@ -36,10 +36,13 @@ class LoginForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-    });
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.statusText)
+      }
+      window.location.reload()
+    })
+    .catch(error => console.log(error));
   }
 
   render() {

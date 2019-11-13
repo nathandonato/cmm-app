@@ -51,10 +51,14 @@ class TodoList extends React.Component {
 
   getTodoItems() {
     fetch(this.state.apiUrl, this.buildFetchOptions({method: 'GET'}))
-    .then(response => response.json())
-    .then(data => {
-      this.setState({ todoItems: data, stale: false })
-    });
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.statusText)
+      }
+      return response.json()
+    })
+    .then(data => this.setState({ todoItems: data, stale: false }))
+    .catch(error => console.log(error));
   }
 
   componentDidMount() {
