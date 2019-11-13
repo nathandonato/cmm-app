@@ -1,7 +1,13 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 
 class LogoutButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
   onClick(event) {
     event.preventDefault();
     fetch(`${window.location.origin}/api/v1/authentication`, {
@@ -16,7 +22,12 @@ class LogoutButton extends React.Component {
       if (!response.ok) {
         throw Error(response.statusText)
       }
-      window.location.reload()
+      // The localStorage flag 'isLoggedIn' is how our PrivateRoute component
+      // will determine if the user is logged in.
+      localStorage.removeItem('isLoggedIn')
+      // This is react-router's way to redirect outside of a render().
+      // The history prop comes from exporting this component wrapped in withRouter
+      this.props.history.push('/')
     })
     .catch(error => console.log(error));
   }
@@ -28,4 +39,4 @@ class LogoutButton extends React.Component {
   }
 }
 
-export default LogoutButton;
+export default withRouter(LogoutButton);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -40,7 +41,12 @@ class LoginForm extends React.Component {
       if (!response.ok) {
         throw Error(response.statusText)
       }
-      window.location.reload()
+      // The localStorage flag 'isLoggedIn' is how our PrivateRoute component
+      // will determine if the user is logged in.
+      localStorage.setItem('isLoggedIn', 'true')
+      // This is react-router's way to redirect outside of a render().
+      // The history prop comes from exporting this component wrapped in withRouter
+      this.props.history.push('/')
     })
     .catch(error => console.log(error));
   }
@@ -78,4 +84,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
