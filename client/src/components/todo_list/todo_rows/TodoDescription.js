@@ -7,10 +7,8 @@ class TodoDescription extends React.Component {
 
     // TODO: Support in-line editing
     return (
-      <div className='col-md-10'>
-        <div className={`todo-description ${completedClass}`}>
-          {description}
-        </div>
+      <div className={`todo-description ${completedClass}`}>
+        {description}
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, Form, Input, Button, Icon } from 'semantic-ui-react'
 import './AddTodo.css'
 
 class AddTodo extends React.Component {
@@ -25,23 +26,24 @@ class AddTodo extends React.Component {
 
   render() {
     return (
-      <div class='row'>
-        <div class='col-md-12 add-todo'>
-          <form className='form-inline todo-form' onSubmit={this.onSubmit}>
-            <input
-              className='form-control'
-              type='text'
-              placeholder='Add todo list item...'
-              name='description'
-              value={this.state.description}
-              onChange={this.onChange}
-              autoComplete='off'
-            />
-          <button className='btn btn-outline-secondary btn-add-todo' type='submit'>+</button>
-          </form>
-        </div>
-      </div>
-
+      <Grid.Row className='todo-form'>
+        <Form onSubmit={this.onSubmit}>
+          <Form.Group inline>
+            <Form.Field>
+              <Input
+                placeholder='Add todo list item...'
+                name='description'
+                value={this.state.description}
+                onChange={this.onChange}
+                autoComplete='off'
+              />
+            </Form.Field>
+            <Button type='submit' className='btn-add-todo'>
+              <Icon name='plus' className='marginless'/>
+            </Button>
+          </Form.Group>
+        </Form>
+      </Grid.Row>
     )
   }
 }

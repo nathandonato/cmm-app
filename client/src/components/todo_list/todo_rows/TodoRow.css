@@ -1,8 +1,9 @@
-.todo-li {
+.todo-row {
+  background-color: white;
+  margin: 5px;
+  padding: 10px;
   border-radius: 5px;
-  text-align: left;
-  padding: 5px;
-  margin: 3px;
+  border: 1px solid lightgray;
 }
 
 .completed {
@@ -13,4 +14,7 @@
 .btn-remove-todo {
   background-color: #e05959 !important;
   border-color: #e05959 !important;
+  color: white !important;
+  margin-left: -20px !important;
+  padding: 10px !important;
 }

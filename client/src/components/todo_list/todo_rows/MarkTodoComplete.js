@@ -1,4 +1,5 @@
 import React from 'react';
+import { Checkbox } from 'semantic-ui-react'
 
 class MarkTodoComplete extends React.Component {
   constructor(props) {
@@ -6,9 +7,9 @@ class MarkTodoComplete extends React.Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  onChange(event) {
+  onChange(event, data) {
     event.preventDefault()
-    const completedAt = event.target.checked ? new Date() : null
+    const completedAt = data.checked ? new Date() : null
     this.props.updateTodo(this.props.todo.id, { completed_at: completedAt })
   }
 
@@ -16,13 +17,7 @@ class MarkTodoComplete extends React.Component {
     const { completed_at } = this.props.todo
 
     return (
-      <div className='col-md-1'>
-        <input
-          type='checkbox'
-          checked={completed_at != null}
-          onChange={this.onChange}
-        />
-      </div>
+      <Checkbox checked={completed_at != null} onChange={this.onChange} />
     )
   }
 }

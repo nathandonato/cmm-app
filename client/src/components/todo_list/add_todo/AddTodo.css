@@ -1,13 +1,12 @@
 .todo-form {
-  display: inline !important;
-}
-
-.add-todo {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
 }
 
 .btn-add-todo {
-  background-color: white !important;
-  border-color: lightgray !important;
+  padding: 10px !important;
+}
+
+.marginless {
+  margin: 0px !important;
 }

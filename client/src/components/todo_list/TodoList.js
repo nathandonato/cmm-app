@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react'
 import ListHeader from '../ListHeader.js';
 import TodoRows from './todo_rows/TodoRows.js';
 import AddTodo from './add_todo/AddTodo.js';
@@ -69,17 +70,21 @@ class TodoList extends React.Component {
   render() {
     const { todoItems } = this.state
     return (
-      <div className='todo-list'>
-        <div className='container'>
+      <Grid.Column style={{ maxWidth: 450 }} className='todo-list'>
+        <Grid.Row>
           <ListHeader title='Todo list' />
+        </Grid.Row>
+        <Grid.Row>
           <TodoRows
             todos={todoItems}
             updateTodo={this.updateTodo}
             removeTodo={this.removeTodo}
           />
+        </Grid.Row>
+        <Grid.Row>
           <AddTodo addTodo={this.addTodo}/>
-        </div>
-      </div>
+        </Grid.Row>
+      </Grid.Column>
     )
   }
 }
