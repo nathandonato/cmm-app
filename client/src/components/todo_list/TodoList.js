@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react'
-import ListHeader from '../ListHeader.js';
+import { Grid, Header } from 'semantic-ui-react'
 import TodoRows from './todo_rows/TodoRows.js';
 import AddTodo from './add_todo/AddTodo.js';
 import './TodoList.css'
@@ -76,7 +75,7 @@ class TodoList extends React.Component {
     return (
       <Grid.Column style={{ maxWidth: 450 }} className='todo-list'>
         <Grid.Row>
-          <ListHeader title='Todo list' />
+          <Header as='h2' textAlign='center' content='Todo list' style={{marginTop: '2px'}}/>
         </Grid.Row>
         <Grid.Row>
           <TodoRows
