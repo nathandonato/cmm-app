@@ -47,7 +47,7 @@ module API
       test 'should create task_duration' do
         assert_difference('@user_one.task_durations.count', 1) do
           post api_v1_task_durations_url,
-               params: duration_params(description: 'foo', task_id: @task.id),
+               params: duration_params(task_id: @task.id),
                headers: @headers,
                as: :json
         end
@@ -84,7 +84,7 @@ module API
 
       test 'update returns not_found' do
         patch api_v1_task_duration_url(0),
-              params: duration_params(description: nil),
+              params: duration_params(task_id: @task.id),
               headers: @headers,
               as: :json
         assert_response :not_found
