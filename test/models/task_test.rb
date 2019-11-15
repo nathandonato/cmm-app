@@ -24,4 +24,10 @@ class TaskTest < ActiveSupport::TestCase
   test 'requires project' do
     refute Task.new(description: 'Foobar').valid?
   end
+
+  test 'destroys task durations upon destruction' do
+    assert_difference('TaskDuration.count', -2) do
+      @task.destroy
+    end
+  end
 end

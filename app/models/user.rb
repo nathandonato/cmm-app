@@ -4,8 +4,9 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :todo_items, dependent: :destroy
+  has_many :task_durations, dependent: :nullify
+
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-
-  has_many :todo_items, dependent: :destroy
 end

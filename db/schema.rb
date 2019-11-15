@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_15_153646) do
+ActiveRecord::Schema.define(version: 2019_11_15_154312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 2019_11_15_153646) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_projects_on_customer_id"
+  end
+
+  create_table "task_durations", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "user_id"
+    t.datetime "started_at"
+    t.datetime "stopped_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_task_durations_on_task_id"
+    t.index ["user_id"], name: "index_task_durations_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -55,6 +66,8 @@ ActiveRecord::Schema.define(version: 2019_11_15_153646) do
   end
 
   add_foreign_key "projects", "customers"
+  add_foreign_key "task_durations", "tasks"
+  add_foreign_key "task_durations", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "todo_items", "users"
 end
