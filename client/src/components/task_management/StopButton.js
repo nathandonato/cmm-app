@@ -9,13 +9,12 @@ class StopButton extends React.Component {
 
   onClick(event, data) {
     event.preventDefault()
+    const { id } = this.props.activeDuration
     const opts = { stopped_at: new Date() }
-    this.props.stopTaskDuration(this.props.taskId, opts)
+    this.props.stopTaskDuration(id, opts)
   }
 
   render() {
-    const { taskId } = this.props
-
     return (
       <Button onClick={this.onClick}>
         Stop

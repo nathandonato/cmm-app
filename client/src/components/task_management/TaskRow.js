@@ -41,6 +41,8 @@ class TaskRow extends React.Component {
   }
 
   stopTaskDuration(taskId, durationOptions) {
+    console.log(this.state)
+    console.log(taskId)
     const body = { task_duration: durationOptions }
     const fetchOptions = this.buildFetchOptions({ method: 'PUT', body: JSON.stringify(body) })
     fetch(`${window.location.origin}/api/v1/task_durations/${taskId}`, fetchOptions)
@@ -75,7 +77,6 @@ class TaskRow extends React.Component {
               <StartButton taskId={id} createTaskDuration={this.createTaskDuration} />
             ) : (
               <StopButton
-                taskId={id}
                 activeDuration={activeDuration}
                 stopTaskDuration={this.stopTaskDuration} />
             )}
