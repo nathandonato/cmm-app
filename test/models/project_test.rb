@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
@@ -21,5 +23,11 @@ class ProjectTest < ActiveSupport::TestCase
 
   test 'requires customer' do
     refute Project.new(description: 'Foobar').valid?
+  end
+
+  test 'destroys tasks upon destruction' do
+    assert_difference('Task.count', -1) do
+      @project.destroy
+    end
   end
 end
