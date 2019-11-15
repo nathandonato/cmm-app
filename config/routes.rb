@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :todo_items
       resources :customers, only: %i[index]
       resources :projects, only: %i[index]
+      resources :tasks, only: %i[index]
     end
   end
 end
