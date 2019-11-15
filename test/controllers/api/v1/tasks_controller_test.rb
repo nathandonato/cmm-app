@@ -28,6 +28,13 @@ module API
 
         assert_response :success
       end
+
+      test 'can create' do
+        params = { project_id: @project.id, description: 'foobar' }
+        post api_v1_tasks_url, headers: @headers, params: { task: params }
+
+        assert_response :success
+      end
     end
   end
 end
