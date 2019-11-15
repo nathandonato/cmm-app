@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resource :authentication, only: %i[create destroy]
       resources :todo_items
       resources :customers, only: %i[index]
+      resources :projects, only: %i[index]
     end
   end
 end
