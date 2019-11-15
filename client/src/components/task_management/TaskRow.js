@@ -66,7 +66,7 @@ class TaskRow extends React.Component {
     return (
       <Grid.Row>
         <Grid columns={3}>
-          <Grid.Column width={11}>
+          <Grid.Column float='left' textAlign='left' width={11}>
              {description}
           </Grid.Column>
           <Grid.Column float='right' width={2}>

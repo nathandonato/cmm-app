@@ -18,7 +18,7 @@ function App() {
           <LoginForm />
         </Route>
         <Layout>
-          <PrivateRoute path='/'>
+          <PrivateRoute path='/taskmanager'>
             <TaskManager />
           </PrivateRoute>
           <PrivateRoute path='/todolist'>

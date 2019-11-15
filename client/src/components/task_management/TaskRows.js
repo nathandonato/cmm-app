@@ -3,7 +3,7 @@ import TaskRow from './TaskRow.js';
 
 class TaskRows extends React.Component {
   render() {
-    const { tasks, createTaskDuration } = this.props
+    const { tasks } = this.props
     return (
       tasks.map((task) => {
         return (

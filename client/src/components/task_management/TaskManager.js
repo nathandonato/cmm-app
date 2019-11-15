@@ -1,9 +1,10 @@
 import React from 'react';
-import { Grid, Dropdown } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import _ from 'lodash'
 import TaskRows from './TaskRows.js'
 import CustomerMenu from './CustomerMenu.js'
 import ProjectMenu from './ProjectMenu.js'
+import AddTask from './AddTask.js'
 
 class TaskManager extends React.Component {
   constructor(props) {
@@ -17,9 +18,9 @@ class TaskManager extends React.Component {
       stale: false
     }
 
-    this.getCustomers = this.getCustomers.bind(this)
     this.setCustomer = this.setCustomer.bind(this)
     this.setProject = this.setProject.bind(this)
+    this.addTask = this.addTask.bind(this)
   }
 
   buildFetchOptions(opts) {
@@ -86,6 +87,23 @@ class TaskManager extends React.Component {
     .catch(error => console.log(error));
   }
 
+  addTask(taskOptions) {
+    const { selectedProjectId } = this.state
+    _.extend(taskOptions, { project_id: selectedProjectId })
+    const apiUrl = `${window.location.origin}/api/v1/tasks`
+
+    fetch(apiUrl, this.buildFetchOptions({ method: 'POST', body: JSON.stringify(taskOptions)}))
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.statusText)
+      }
+      return response.json()
+    })
+    .then(data => {
+      this.setState({ stale: true })
+    })
+    .catch(error => console.log(error));
+  }
 
   setCustomer(customerId) {
     const stateOptions = {
@@ -131,6 +149,12 @@ class TaskManager extends React.Component {
             <TaskRows tasks={tasks} />
           </Grid.Column>
         </Grid.Row>
+
+        {(selectedProjectId !== null) ? (
+          <Grid.Row centered>
+            <AddTask addTask={this.addTask} />
+          </Grid.Row>
+        ) : (null)}
       </Grid>
     )
   }

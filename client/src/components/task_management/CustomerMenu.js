@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react'
-import _ from 'lodash'
 
 class CustomerMenu extends React.Component {
   render() {
