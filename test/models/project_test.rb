@@ -26,7 +26,7 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test 'destroys tasks upon destruction' do
-    assert_difference('Task.count', -1) do
+    assert_difference('Task.count', -2) do
       @project.destroy
     end
   end

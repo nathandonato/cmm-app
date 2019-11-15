@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :customers, only: %i[index]
       resources :projects, only: %i[index]
       resources :tasks, only: %i[index]
+      resources :task_durations
     end
   end
 end
